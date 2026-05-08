@@ -13,20 +13,40 @@ This guide provides step-by-step instructions for deploying the Team Task Manage
 
 ## 🔐 Required Environment Variables
 
+### Your Actual Credentials (For Reference)
+
+**⚠️ IMPORTANT SECURITY NOTICE:**
+- These credentials are for your **development/testing environment**
+- The `.env` files are in `.gitignore` and will NOT be pushed to GitHub
+- For production deployment on Railway, use Railway's environment variables feature
+- **NEVER commit these credentials to your repository**
+
+**Your MongoDB URI:**
+```
+mongodb+srv://user:shivah45678@cluster0.d13klqn.mongodb.net/taskmanager?retryWrites=true&w=majority&appName=Cluster0
+```
+
+**Your JWT Secret:**
+```
+mySuperSecretKey987654321
+```
+
+---
+
 ### Backend Service Environment Variables
 
 Configure these in Railway for your **backend service**:
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `MONGO_URI` | MongoDB Atlas connection string | `mongodb+srv://username:password@cluster.mongodb.net/taskmanager?retryWrites=true&w=majority` |
-| `JWT_SECRET` | Secret key for JWT token generation | `your-super-secure-random-string-here` |
-| `FRONTEND_URL` | URL of your deployed frontend | `https://your-frontend.railway.app` |
+| Variable | Description | Your Value |
+|----------|-------------|------------|
+| `MONGO_URI` | MongoDB Atlas connection string | `mongodb+srv://user:shivah45678@cluster0.d13klqn.mongodb.net/taskmanager?retryWrites=true&w=majority&appName=Cluster0` |
+| `JWT_SECRET` | Secret key for JWT token generation | `mySuperSecretKey987654321` |
+| `FRONTEND_URL` | URL of your deployed frontend | `https://your-frontend.railway.app` (update after frontend deployment) |
 | `NODE_ENV` | Environment mode | `production` |
 | `PORT` | Port for backend server (auto-set by Railway) | `5000` (Railway will override) |
 
 **Important Notes:**
-- Generate a strong `JWT_SECRET` using: `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"`
+- Copy the `MONGO_URI` and `JWT_SECRET` values exactly as shown above when configuring Railway
 - The `FRONTEND_URL` will be available after deploying the frontend first
 - Railway automatically sets `PORT`, but the app has a fallback to 5000
 
